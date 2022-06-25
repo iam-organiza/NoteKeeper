@@ -1,8 +1,10 @@
 package com.raywenderlich.notekeeper
 
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -29,7 +31,11 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
 
         binding.fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+            val textDisplayedValue = binding.contentMain.root.findViewById(R.id.textDisplayedValue) as TextView
+            val originalValue = textDisplayedValue.text.toString()
+            val newValue = originalValue.toInt() * 2
+            textDisplayedValue.text = newValue.toString()
+            Snackbar.make(view, "Value $originalValue changed to $newValue", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show()
         }
     }
